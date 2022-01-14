@@ -16,7 +16,7 @@ ourApp.get('/', function(req, res) {
 ourApp.post('/answer', function(req, res){
   if (req.body.skycolor.toUpperCase() == "BLUE"){
     res.send(`
-    <p>Congrats, that's the correct answer!</p>
+    <p>Congrats, that's the correct answer!!</p>
     <a href="/">Back to home</a>
     `)
   } else {    
