@@ -1,16 +1,15 @@
 let express = require("express")
 let ourApp = express()
+let fs = require("fs")
 ourApp.use(express.urlencoded({extended: false}))
 let port = 3000
 
 ourApp.get('/', function(req, res) {
-  res.send(`
-    <form action="/answer" method="POST">
-      <p>What color is the sky today?</p>
-      <input name="skycolor" autocomplete="off">
-      <button>Submit</button>
-    </form>
-  `)
+  fs.readFile('index.html', function(err, data){
+    res.writeHead(200, {'Content-Type': 'text/html'})
+    res.write(data)
+    return res.end()
+  })
 })
 
 ourApp.post('/answer', function(req, res){
@@ -30,7 +29,7 @@ ourApp.post('/answer', function(req, res){
 
 
 ourApp.get('/answer', function(req, res){
-  res.send("Are you lost? There is nothing to see.")
+  res.send("Are you lost? Get out. There is nothing to see here.")
 })
 
 ourApp.listen(port)
